@@ -1,7 +1,15 @@
+import './Home.css'
+import Contact from './Home-Contacts/Contact'
 export default function Home(){
     return (
         <>
-            <h1>Chat</h1>
+           <div className="Home-body">
+                <div className="Home-contacts-scope">
+                    <Contact username={'John'} />
+                </div>
+                <div className='Home-chat'></div>
+            
+            </div>
         </>
     )
 }
