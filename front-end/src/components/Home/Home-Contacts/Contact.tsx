@@ -1,9 +1,11 @@
 import './Contact.css'
 
 interface UserProps{
-    username: string
+    username?: string
+    leastMessage?: boolean
+    fixed?: boolean
 }
-export default function Contact({username}: UserProps){   
+export default function Contact({username,leastMessage}: UserProps){   
     return (
         <>
                     <div className='Home-contact'>
@@ -13,7 +15,7 @@ export default function Contact({username}: UserProps){
                         <div className='Home-contact-name'>
                             <p>{username}</p>
                             <div className='Home-contact-leastMenssage'>
-                            ✔✔ vlw
+                                {leastMessage? "✔✔ vlw" : ""}
                             </div>
                         </div>
                     </div>

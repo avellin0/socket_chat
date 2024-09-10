@@ -15,7 +15,7 @@
 
 .Home-contact-img{
     border-radius: 100px;
-    width: 13%;
+    width: 50px;
     height: 80%;
     background-image: url("https://randomuser.me/api/portraits/men/60.jpg");
     background-size: cover;
@@ -29,7 +29,7 @@
     justify-content: center;
     font-family: sans-serif;
     color: white;
-    width: 85%;
+    width: 90%;
     height: 100%;
     border-bottom: 1px solid gray;
 }
