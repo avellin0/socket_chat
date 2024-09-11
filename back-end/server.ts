@@ -19,7 +19,17 @@ io.on('connection', (socket: Socket) => {
     console.log("Usuario conectado");
     
     socket.on('set_username', username => {
-        console.log("Bem vindo(a):", username);
+        console.log("Username recebido no set_username:", username);
+        socket.data.username = username
+        console.log("Bem vindo(a):", socket.data.username);
+    })
+
+    socket.on('send_message', message => {
+        console.log("username:", socket.data.username,);
+        io.emit('message', {
+            message,
+            author: socket.data.username
+        })
     })
 })
 

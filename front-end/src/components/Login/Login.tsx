@@ -1,7 +1,7 @@
 import './Login.css'
 import {useRef} from 'react'
 import { useNavigate} from 'react-router-dom'
-import { io } from 'socket.io-client'
+import socket from '../socket'
 
 
 export default function Login(){
@@ -16,11 +16,8 @@ export default function Login(){
 
             if(!username.trim()) return
 
-            const socket = io("http://localhost:3000", {transports:['websocket'], secure: false})
-            socket.connect()
-
             socket.emit('set_username', username)
-            console.log(username)
+            console.log("Emitindo set_username com:", username);
 
             navigate('/Home');
         }
