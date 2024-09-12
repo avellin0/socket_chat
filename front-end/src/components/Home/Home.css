@@ -69,6 +69,38 @@
 .Home-chat-real-time{
     height: 80%;
     width: 100%;
+    display: flex;
+}
+
+.Home-chat-messages{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    color: black;
+    background-color: red;
+}
+
+.main-user-message{
+    align-self: flex-end;
+    background-color: blue; /* Cor visível para testar */
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 5px;
+    max-width: 60%;
+    text-align: right;
+}
+   
+.guest-user-message {
+    align-self: flex-start;
+    background-color: gray;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 5px;
+    max-width: 60%;
+    text-align: left;
 }
 
 .Home-chat-send-message{

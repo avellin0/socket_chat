@@ -2,6 +2,7 @@ import { useRef, useState , useEffect} from 'react'
 import './Home.css'
 import Contact from './Home-Contacts/Contact'
 import socket from '../socket'
+import { usernameLogin } from '../Login/Login'
 
 type TypeMessage = {
     message: string,
@@ -12,6 +13,7 @@ export default function Home(){
 
     const messageRef = useRef<HTMLInputElement>(null)
     const [messageList, setMessageList] = useState<TypeMessage[]>([])
+    const [username, setUsername] = useState("")
 
     useEffect(() => {
         const handleMessage = (data: TypeMessage) => {
@@ -20,7 +22,15 @@ export default function Home(){
 
         socket.on('message', handleMessage)
 
-        return () => { socket.off('message', handleMessage) }
+        socket.on('set_username', data => {
+            console.log("Username recebido:", data);
+            setUsername(data)
+        })
+
+        return () => { 
+            socket.off('message', handleMessage) , 
+            socket.off('set_username') 
+        }
 
     }, [])
 
@@ -35,7 +45,6 @@ export default function Home(){
         
         cleanInput()
         console.log(message); 
-        
         }   
 
     const cleanInput= () => {
@@ -56,11 +65,22 @@ export default function Home(){
                     </div>
 
                     <div className="Home-chat-real-time">
+                        <div className='Home-chat-messages'>
                         {
-                            messageList.map((message,index) => (
-                                <p key={index}>{message.author}: {message.message}</p>
-                            ))
-                        }
+                            messageList.map((message, index) => {
+                            console.log(`message.author: ${message.author}, username: ${username}`);
+                            return (
+                                <p 
+                                    key={index} 
+                                    className={message.author.trim() === usernameLogin? 'main-user-message' : 'guest-user-message'}
+                                >
+                                    {message.author}: {message.message}
+                                </p>
+        )
+    })
+}
+                                               
+                        </div>
                     </div>
 
                     <div className="Home-chat-send-message">
@@ -75,3 +95,5 @@ export default function Home(){
         </>
     )
 }
+
+   

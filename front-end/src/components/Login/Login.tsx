@@ -3,7 +3,7 @@ import {useRef} from 'react'
 import { useNavigate} from 'react-router-dom'
 import socket from '../socket'
 
-
+var usernameLogin = ""
 export default function Login(){
 
     const usernameRef = useRef<HTMLInputElement>(null)
@@ -15,6 +15,8 @@ export default function Login(){
             const username = usernameRef.current.value;
 
             if(!username.trim()) return
+
+            usernameLogin = username
 
             socket.emit('set_username', username)
             console.log("Emitindo set_username com:", username);
@@ -35,3 +37,5 @@ export default function Login(){
         </>
     )
 }
+
+export {usernameLogin}
