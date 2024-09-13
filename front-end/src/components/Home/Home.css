@@ -16,6 +16,25 @@
     flex-direction: column;
 }
 
+.Home-Add-Contact{
+    display: flex;
+    height: 60px;
+    width: 100%;
+    background-color: gray;
+    align-items: center;
+    gap: 20px;
+}
+
+.Home-Add-Contact img{
+    height: 50%;
+    margin-left: 10px;
+}
+
+.Home-Add-Contact:hover{
+    cursor: pointer;
+    background-color: #4e4d4d;
+}
+
 .Home-contact{
     height: 60px;
     width: 100%;
@@ -78,12 +97,11 @@
     display: flex;
     flex-direction: column;
     color: black;
-    background-color: red;
 }
 
 .main-user-message{
     align-self: flex-end;
-    background-color: blue; /* Cor visível para testar */
+    background-color: rgb(22, 22, 22); /* Cor visível para testar */
     color: white;
     padding: 10px;
     border-radius: 10px;

@@ -3,7 +3,8 @@ import './Home.css'
 import Contact from './Home-Contacts/Contact'
 import socket from '../socket'
 import { usernameLogin } from '../Login/Login'
-
+import AddContact from "../../../public/addContact.png"
+import { useNavigate } from 'react-router-dom'
 type TypeMessage = {
     message: string,
     author: string
@@ -53,10 +54,16 @@ export default function Home(){
         }
     }
 
+    const navigate = useNavigate()
+
     return (
         <>
            <div className="Home-body">
                 <div className="Home-contacts-scope">
+                    <div className='Home-Add-Contact' onClick={() => navigate('/AddContact')}>
+                        <img src={AddContact} alt="" />
+                        <h2>Add contacts</h2>
+                    </div>
                     <Contact username={'John'} leastMessage={true} />
                 </div>
                 <div className='Home-chat'>
@@ -68,7 +75,7 @@ export default function Home(){
                         <div className='Home-chat-messages'>
                         {
                             messageList.map((message, index) => {
-                            console.log(`message.author: ${message.author}, username: ${username}`);
+                            console.log(`message.author: ${message.author.toUpperCase()}, username: ${username}`);
                             return (
                                 <p 
                                     key={index} 
@@ -76,10 +83,9 @@ export default function Home(){
                                 >
                                     {message.author}: {message.message}
                                 </p>
-        )
-    })
-}
-                                               
+                            )
+                          })
+                        }                                              
                         </div>
                     </div>
 
