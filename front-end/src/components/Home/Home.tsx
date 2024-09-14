@@ -3,7 +3,7 @@ import './Home.css'
 import Contact from './Home-Contacts/Contact'
 import socket from '../socket'
 import { usernameLogin } from '../Login/Login'
-import AddContact from "../../../public/addContact.png"
+import AddContact from "../../addContact.png"
 import { useNavigate } from 'react-router-dom'
 type TypeMessage = {
     message: string,
