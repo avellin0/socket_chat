@@ -64,11 +64,11 @@ export default function Home(){
                         <img src={AddContact} alt="" />
                         <h2>Add contacts</h2>
                     </div>
-                    <Contact username={'John'} leastMessage={true} />
+                    <Contact leastMessage={true} />
                 </div>
                 <div className='Home-chat'>
                     <div className='Home-chat-header' >
-                        <Contact username={"John"}/>                        
+                        <Contact />                        
                     </div>
 
                     <div className="Home-chat-real-time">

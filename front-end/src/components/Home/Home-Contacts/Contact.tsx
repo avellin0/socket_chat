@@ -1,11 +1,17 @@
 import './Contact.css'
-
+import { friend } from '../../Contact/NewContact'
 interface UserProps{
-    username?: string
     leastMessage?: boolean
     fixed?: boolean
 }
-export default function Contact({username,leastMessage}: UserProps){   
+
+
+export default function Contact({leastMessage}: UserProps){   
+
+
+console.log("friend é isso aqui:", friend);
+
+
     return (
         <>
                     <div className='Home-contact'>
@@ -13,7 +19,7 @@ export default function Contact({username,leastMessage}: UserProps){
                             <img src="" alt="" id='Home-contact-img-user'/>
                         </div>
                         <div className='Home-contact-name'>
-                            <p>{username}</p>
+                            <p>{friend}</p>
                             <div className='Home-contact-leastMenssage'>
                                 {leastMessage? "✔✔ vlw" : ""}
                             </div>

@@ -1,21 +1,30 @@
 import './NewContact.css'
 import { useRef } from 'react'
-import socket from '../socket'
+import { useNavigate } from 'react-router-dom'
+
+var friend = ""
 export default function NewContact(){
 
     const friendContact = useRef<HTMLInputElement>(null)
 
+    const navigate = useNavigate()
     const handleSubmit = () => {
         try{
-            const friendName = friendContact.current?.value
-            console.log("nome do amigo", friendName);
+            if(friendContact.current === null) return
+                const friendName = friendContact.current?.value
+            
+                if(friendName.trim()) return
+                
+                friend = friendName
+                console.log("nome do amigo", friendName);
 
-            socket.emit('new_contact', friendName)
+            navigate('/Home')
 
         }catch(err){
             console.log("erro aqui:", err);
         }
 
+                
         }
 
     return (
@@ -33,5 +42,5 @@ export default function NewContact(){
     )
 }
 
+export {friend}
 
-// agora so preciso manipular esse envio e enviar no chat !
