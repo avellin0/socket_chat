@@ -5,12 +5,9 @@ interface UserProps{
     fixed?: boolean
 }
 
-
 export default function Contact({leastMessage}: UserProps){   
 
-
 console.log("friend é isso aqui:", friend);
-
 
     return (
         <>
