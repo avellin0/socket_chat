@@ -66,35 +66,9 @@ export default function Home(){
                     </div>
                     <Contact leastMessage={true} />
                 </div>
+                
                 <div className='Home-chat'>
-                    <div className='Home-chat-header' >
-                        <Contact />                        
-                    </div>
-
-                    <div className="Home-chat-real-time">
-                        <div className='Home-chat-messages'>
-                        {
-                            messageList.map((message, index) => {
-                            console.log(`message.author: ${message.author.toUpperCase()}, username: ${username}`);
-                            return (
-                                <p 
-                                    key={index} 
-                                    className={message.author.trim() === usernameLogin? 'main-user-message' : 'guest-user-message'}
-                                >
-                                    {message.author}: {message.message}
-                                </p>
-                            )
-                          })
-                        }                                              
-                        </div>
-                    </div>
-
-                    <div className="Home-chat-send-message">
-                        <input type="text" id="Home-chat-text-area" placeholder='Send a message to your friend' ref={messageRef}/>
-
-                        <div className='button' onClick={() => handleSubmit()}>Enviar</div>
-                    </div>
-
+                    
                 </div>
             
             </div>
