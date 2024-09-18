@@ -1,22 +1,29 @@
 import './Contact.css'
-import { friend } from '../../Contact/NewContact'
+import { useNavigate } from 'react-router-dom'
+
 interface UserProps{
+    username?: string
     leastMessage?: boolean
     fixed?: boolean
 }
+    
+const navigate = useNavigate()
 
-export default function Contact({leastMessage}: UserProps){   
+export default function Contact({username,leastMessage}: UserProps){   
 
-console.log("friend é isso aqui:", friend);
+    const ViewMessageWithThisFriend = () => {
+   
+        navigate('/Home/:username')
+    }
 
     return (
         <>
-                    <div className='Home-contact'>
+                    <div className='Home-contact' onClick={() => ViewMessageWithThisFriend()}>
                         <div className="Home-contact-img">
                             <img src="" alt="" id='Home-contact-img-user'/>
                         </div>
                         <div className='Home-contact-name'>
-                            <p>{friend}</p>
+                            <p>{username}</p>
                             <div className='Home-contact-leastMenssage'>
                                 {leastMessage? "✔✔ vlw" : ""}
                             </div>
