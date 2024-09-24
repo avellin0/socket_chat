@@ -4,6 +4,7 @@ import './Home.css'
 // import { usernameLogin } from '../Login/Login'
 import AddContact from "../../addContact.png"
 import { useNavigate} from 'react-router-dom'
+import Contact from './Home-Contacts/Contact'
 
 // import Contact from './Home-Contacts/Contact'
 
@@ -12,17 +13,19 @@ import { useNavigate} from 'react-router-dom'
 //     author: string
 // }
 
+interface FriendProps{
+    friends: string[]
+}
 
+export default function Home({friends}: FriendProps){
 
-export default function Home(){
     // const {username} = useParams()
     // const messageRef = useRef<HTMLInputElement>(null)
     // const [messageList, setMessageList] = useState<TypeMessage[]>([])
-    // const [userName, setUserName] = useState("")
 
-
-
+   
     const navigate = useNavigate()
+
 
     return (
         <>
@@ -31,8 +34,14 @@ export default function Home(){
                     <div className='Home-Add-Contact' onClick={() => navigate('/AddContact')}>
                         <img src={AddContact} alt="" />
                         <h2>Add contacts</h2>
-                      
                     </div>
+                            {
+                               friends.length === 0? (
+                                ""
+                               ) : (
+                                friends.map((friend, index) => <Contact key={index} name={friend}/>)
+                               )
+                            }
                 </div>
                 
                 <div className='Home-chat'>

@@ -1,21 +1,21 @@
 import './Contact.css'
 import { useNavigate } from 'react-router-dom'
-
 interface UserProps{
-    username?: string
-    leastMessage?: boolean
-    fixed?: boolean
+    username?: string,
+    leastMessage?: boolean,
+    fixed?: boolean,
+    name: string
 }
     
-const navigate = useNavigate()
 
-export default function Contact({username,leastMessage}: UserProps){   
+export default function Contact({name}: UserProps){   
+    const navigate = useNavigate()
 
     const ViewMessageWithThisFriend = () => {
-   
-        navigate('/Home/:username')
+        navigate(`/Home/:${name}`)
     }
 
+   
     return (
         <>
                     <div className='Home-contact' onClick={() => ViewMessageWithThisFriend()}>
@@ -23,12 +23,13 @@ export default function Contact({username,leastMessage}: UserProps){
                             <img src="" alt="" id='Home-contact-img-user'/>
                         </div>
                         <div className='Home-contact-name'>
-                            <p>{username}</p>
+                           <p>{name}</p>
                             <div className='Home-contact-leastMenssage'>
-                                {leastMessage? "✔✔ vlw" : ""}
+                                {name? "✔✔ vlw" : ""}
                             </div>
                         </div>
                     </div>
         </>
     )
 }
+

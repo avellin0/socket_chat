@@ -1,21 +1,21 @@
 import './NewContact.css'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import socket from '../socket'
 
-
-interface ContactProps{
-    name: string
+interface AddFriendProps{
+    addFriend: (name: string) => void
 }
 
-interface NewContactProps {
-    addContact: (contact: ContactProps) => void;
-}
+export default function NewContact({addFriend}: AddFriendProps){
 
-export default function NewContact({addContact}: NewContactProps){
+    const [friend, setFriend] = useState('')
+    
 
     const friendContact = useRef<HTMLInputElement>(null)
 
     const navigate = useNavigate()
+    
     const handleSubmit = () => {
         try{
             if(friendContact.current === null) return
@@ -25,9 +25,11 @@ export default function NewContact({addContact}: NewContactProps){
                 
                 console.log("nome do amigo", friendName);
 
-                addContact({name: friendName})
+                socket.emit("new_friend", friendName)
 
-            navigate(`/Home/${friendName}`)
+                addFriend(friendName)
+                navigate(`/Home/${friendName}`)
+                setFriend('')
 
         }catch(err){
             console.log("erro aqui:", err);
@@ -39,7 +41,7 @@ export default function NewContact({addContact}: NewContactProps){
             <div className="AddContact-Scope">
                 <div className='AddContact-Area'>
                     <h1>Add Contact</h1>
-                    <input type="text" placeholder='Nome' className='AddContact-input'/>
+                    <input type="text" placeholder='Nome' className='AddContact-input' title={friend}/>
                     <input type="text" placeholder='Apelido' className='AddContact-input' ref={friendContact}/>
                     <input type="text" placeholder='numero' className='AddContact-input'/>
                     <button type='submit' onClick={() => handleSubmit()}>Adicionar</button>
@@ -49,8 +51,4 @@ export default function NewContact({addContact}: NewContactProps){
     )
 }
 
-
-function addContact(arg0: { name: string }) {
-    throw new Error('Function not implemented.')
-}
 
