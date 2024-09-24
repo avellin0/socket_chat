@@ -1,18 +1,20 @@
 import './Contact.css'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate} from 'react-router-dom'
 interface UserProps{
     username?: string,
     leastMessage?: boolean,
     fixed?: boolean,
-    name: string
+    name: string|undefined
 }
     
 
-export default function Contact({name}: UserProps){   
+export default function Contact({name,leastMessage}: UserProps){   
+
+    
     const navigate = useNavigate()
 
     const ViewMessageWithThisFriend = () => {
-        navigate(`/Home/:${name}`)
+        navigate(`/Home/${name}`)
     }
 
    
@@ -25,7 +27,7 @@ export default function Contact({name}: UserProps){
                         <div className='Home-contact-name'>
                            <p>{name}</p>
                             <div className='Home-contact-leastMenssage'>
-                                {name? "✔✔ vlw" : ""}
+                                {leastMessage? "✔✔ vlw" : ""}
                             </div>
                         </div>
                     </div>
