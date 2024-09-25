@@ -20,7 +20,6 @@ export default function Home({friends}: FriendProps){
 
     
     const [messageList, setMessageList] = useState<TypeMessage[]>([])
-    const [UserName, setUserName] = useState('')
 
 
     useEffect(() => {
@@ -32,7 +31,6 @@ export default function Home({friends}: FriendProps){
 
     socket.on('set_username', data => {
         console.log("Username recebido:", data);
-        setUserName(data)
     })
 
     return () => { 
@@ -45,8 +43,7 @@ export default function Home({friends}: FriendProps){
 const messageRef = useRef<HTMLInputElement>(null) 
 
 const handleSubmit = () => {
-    
-    if(messageRef.current === null) return 
+    if(messageRef.current === null || messageRef.current === undefined) return 
         const message = messageRef.current.value
     
     if(!message.trim()) return 
