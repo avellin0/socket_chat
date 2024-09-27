@@ -94,12 +94,15 @@ const cleanInput= () => {
                                             messageList.map((message, index) => (
                                                 <>
                                                     { message.author === usernameLogin?
-                                                    <div className='main-user-message'> 
-                                                     <p key={index}>{message.author}: {message.message}</p>
-                                                    </div> : 
-                                                    <div className='guest-user-message'>
-                                                     <p key={index}>{message.author}: {message.message}</p>
-                                                    </div>
+                                                        <div className='main-user-message'> 
+                                                            <p key={index}>{message.author}: {message.message}</p>
+                                                        </div> : ""
+                                                    }
+                                                    {
+                                                     message.author === username? 
+                                                        <div className='guest-user-message'>
+                                                            <p key={index}>{message.author}: {message.message}</p>
+                                                        </div> : ""
                                                    }
                                                 </>
                                             ))
@@ -119,3 +122,4 @@ const cleanInput= () => {
     )
 }
 
+// Devo usar IDs para me comunicar melhor entre SOCKETs;
