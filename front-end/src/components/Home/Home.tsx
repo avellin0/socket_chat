@@ -118,7 +118,8 @@ const cleanInput= () => {
                 </div>
             
             </div>
-        </>
+        </> 
+        
     )
 }
 
