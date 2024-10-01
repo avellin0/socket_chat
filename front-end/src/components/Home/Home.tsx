@@ -9,7 +9,8 @@ import Contact from './Home-Contacts/Contact'
 
 type TypeMessage = {
     message: string,
-    author: string
+    author: string,
+    authorId: string
 }
 
 interface FriendProps{
@@ -95,13 +96,13 @@ const cleanInput= () => {
                                                 <>
                                                     { message.author === usernameLogin?
                                                         <div className='main-user-message'> 
-                                                            <p key={index}>{message.author}: {message.message}</p>
+                                                            <p key={index}>{message.author}{message.authorId}: {message.message}</p>
                                                         </div> : ""
                                                     }
                                                     {
                                                      message.author === username? 
                                                         <div className='guest-user-message'>
-                                                            <p key={index}>{message.author}: {message.message}</p>
+                                                            <p key={index}>{message.author}{message.authorId}: {message.message}</p>
                                                         </div> : ""
                                                    }
                                                 </>
@@ -122,5 +123,3 @@ const cleanInput= () => {
         
     )
 }
-
-// Devo usar IDs para me comunicar melhor entre SOCKETs;

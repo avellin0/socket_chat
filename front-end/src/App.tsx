@@ -11,6 +11,8 @@ function App() {
     setFriend([...friend, name])
   }
 
+ 
+
   return (
     <Router>
       <Routes>

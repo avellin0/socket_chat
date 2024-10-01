@@ -24,11 +24,20 @@ io.on('connection', (socket: Socket) => {
         console.log("Bem vindo(a):", socket.data.username);
     })
 
+    socket.on('new_friend', data => {
+        console.log("Essa é a userInfo:", data);
+        io.emit('userInfo', {
+            data,
+            authorId: socket.data.authorId
+        })
+    })
+
     socket.on('send_message', message => {
         console.log("username:", socket.data.username,);
         io.emit('message', {
             message,
-            author: socket.data.username
+            author: socket.data.username,
+            authorId: socket.id
         })
     })
 })

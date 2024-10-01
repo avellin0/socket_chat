@@ -1,5 +1,5 @@
 import './NewContact.css'
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import socket from '../socket'
 
@@ -7,29 +7,43 @@ interface AddFriendProps{
     addFriend: (name: string) => void
 }
 
+
 export default function NewContact({addFriend}: AddFriendProps){
 
     const [friend, setFriend] = useState('')
-    
+    const [userId, setUserId] = useState<number[]>([])
 
     const friendContact = useRef<HTMLInputElement>(null)
 
     const navigate = useNavigate()
     
+
+    const generateId = () => {
+        for(let x=0 ; x <0; x++){
+            setUserId((current) => [...current, x])
+            return userId.pop()
+        }    
+    } 
+
     const handleSubmit = () => {
         try{
             if(friendContact.current === null) return
                 const friendName = friendContact.current?.value
-            
+                
+                const userInfo = {
+                    friendName,
+                    userId: generateId()
+                } 
+                
                 if(!friendName.trim()) return
                 
                 console.log("nome do amigo", friendName);
 
-                socket.emit("new_friend", friendName)
-
                 addFriend(friendName)
-                navigate(`/Home/${friendName}`)
+                
+                navigate(`/Home/${userInfo.userId}`)
                 setFriend('')
+
 
         }catch(err){
             console.log("erro aqui:", err);
