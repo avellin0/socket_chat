@@ -41,7 +41,7 @@ export default function NewContact({addFriend}: AddFriendProps){
 
                 addFriend(friendName)
                 
-                navigate(`/Home/${userInfo.userId}`)
+                navigate(`/Home/${1}`)
                 setFriend('')
 
 

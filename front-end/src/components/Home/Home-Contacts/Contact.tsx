@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import './Contact.css'
 import { useNavigate} from 'react-router-dom'
 
@@ -12,14 +13,14 @@ interface UserProps{
 
 export default function Contact({name,leastMessage}: UserProps){   
 
-
+    const [userId , setUserId] = useState<number[]>([0])
     const navigate = useNavigate()
 
 
 
     const ViewMessageWithThisFriend = () => {
-
-        navigate(`/Home/`)
+        
+        navigate(`/Home/${userId}`)
     }
 
    
